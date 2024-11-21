@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" debug="true"
+               monitorInterval="30">
+    <properties>
+        <property name="name">pdfutil</property>
+        <property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %c{1.} - %X{txno} | %m%n</property>
+        <property name="location">logs/</property>
+    </properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${pattern}" />
+        </Console>
+
+        <RollingFile name="main"
+                     fileName="${location}${name}-main.log"
+                     filePattern="${location}${name}-main-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout>
+                <pattern>${pattern}</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="alarm"
+                     fileName="${location}${name}-alarm.log"
+                     filePattern="${location}${name}-alarm-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.smc.pdfutil" level="debug" additivity="false">
+            <AppenderRef ref="main" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="ALARM" level="info" additivity="false">
+            <AppenderRef ref="alarm" />
+        </Logger>
+        <Root level="warn">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="main" />
+        </Root>
+
+    </Loggers>
+</Configuration>
