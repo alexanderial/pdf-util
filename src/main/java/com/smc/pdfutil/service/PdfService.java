@@ -36,6 +36,7 @@ public class PdfService {
 
 	/**
 	 * Create a new blank PDF. The new PDF will at least contain a single page.
+	 *
 	 * @param pageNum Page number that new PDF will contain
 	 * @param outputStream OutputStream to the output PDF
 	 */
@@ -56,6 +57,7 @@ public class PdfService {
 
 	/**
 	 * Read the text from given PDF.
+	 *
 	 * @param inputStream InputStream to the PDF
 	 * @return Text of the PDF
 	 */
@@ -65,6 +67,7 @@ public class PdfService {
 
 	/**
 	 * Read the text from given PDF.
+	 *
 	 * @param inputStream InputStream to the PDF
 	 * @param pwd Password to decrypt the PDF
 	 * @return Text of the PDF
@@ -83,6 +86,7 @@ public class PdfService {
 
 	/**
 	 * Split specified pages from given PDF and put into a new PDF.
+	 *
 	 * @param inputStream InputStream to the PDF
 	 * @param pagesIdx Index of pages subjected to split
 	 * @param outputStream OutputStream to the output PDF
@@ -93,6 +97,7 @@ public class PdfService {
 
 	/**
 	 * Split specified pages from given PDF and put into a new PDF.
+	 *
 	 * @param inputStream InputStream to the PDF
 	 * @param pwd Password to decrypt the PDF
 	 * @param pagesIdx Index of pages subjected to split
@@ -115,6 +120,7 @@ public class PdfService {
 
 	/**
 	 * Merge multiple PDF into a new PDF
+	 *
 	 * @param inputStream Map of InputStream to the PDF and corresponding password (if any)
 	 * @param outputStream OutputStream to the output PDF
 	 */
@@ -138,6 +144,7 @@ public class PdfService {
 
 	/**
 	 * Encrypt the PDF
+	 *
 	 * @param inputStream InputStream to the PDF
 	 * @param ownerPwd New password to decrypt the PDF in owner level
 	 * @param userPwd New password to decrypt the PDF in user level
@@ -149,6 +156,7 @@ public class PdfService {
 
 	/**
 	 * Encrypt the PDF
+	 *
 	 * @param inputStream InputStream to the PDF
 	 * @param pwd Password to decrypt the PDF
 	 * @param ownerPwd New password to decrypt the PDF in owner level
@@ -181,6 +189,7 @@ public class PdfService {
 
 	/**
 	 * Draw the specified image to the PDF
+	 *
 	 * @param inputStream InputStream to the PDF
 	 * @param pageIdx Index of the page to draw the image
 	 * @param imgStream InputStream to the image
@@ -194,6 +203,7 @@ public class PdfService {
 
 	/**
 	 * Draw the specified image to the PDF
+	 *
 	 * @param inputStream InputStream to the PDF
 	 * @param pageIdx Index of the page to draw the image
 	 * @param imgStream InputStream to the image
@@ -209,6 +219,7 @@ public class PdfService {
 
 	/**
 	 * Draw the specified image to the PDF
+	 *
 	 * @param inputStream InputStream to the PDF
 	 * @param pwd Password to decrypt the PDF
 	 * @param pageIdx Index of the page to draw the image
@@ -223,6 +234,7 @@ public class PdfService {
 
 	/**
 	 * Draw the specified image to the PDF
+	 *
 	 * @param inputStream InputStream to the PDF
 	 * @param pwd Password to decrypt the PDF
 	 * @param pageIdx Index of the page to draw the image
@@ -268,6 +280,7 @@ public class PdfService {
 
 	/**
 	 * Capture the specified area of the PDF and convert into image(png)
+	 *
 	 * @param inputStream InputStream to the PDF
 	 * @param pageIdx Index of page to capture
 	 * @param dpi The DPI of the output image
@@ -279,6 +292,7 @@ public class PdfService {
 
 	/**
 	 * Capture the specified area of the PDF and convert into image(png)
+	 *
 	 * @param inputStream InputStream to the PDF
 	 * @param pwd Password to decrypt the PDF
 	 * @param pageIdx Index of page to capture
@@ -291,6 +305,7 @@ public class PdfService {
 
 	/**
 	 * Capture the specified area of the PDF and convert into image(png)
+	 *
 	 * @param inputStream InputStream to the PDF
 	 * @param pageIdx Index of page to capture
 	 * @param x X coordinate (inch) of the capture area, starting from upper-left corner
@@ -306,6 +321,7 @@ public class PdfService {
 
 	/**
 	 * Capture the specified area of the PDF and convert into image(png)
+	 *
 	 * @param inputStream InputStream to the PDF
 	 * @param pwd Password to decrypt the PDF
 	 * @param pageIdx Index of page to capture
@@ -337,6 +353,7 @@ public class PdfService {
 
 	/**
 	 * Add watermark to the PDF
+	 *
 	 * @param inputStream InputStream to the PDF
 	 * @param watermarkStream InputStream to the watermark PDF
 	 * @param outputStream OutputStream to the output PDF
@@ -347,6 +364,7 @@ public class PdfService {
 
 	/**
 	 * Add watermark to the PDF
+	 *
 	 * @param inputStream InputStream to the PDF
 	 * @param pwd Password to decrypt the PDF
 	 * @param watermarkStream InputStream to the watermark PDF
@@ -371,7 +389,8 @@ public class PdfService {
 
 	/**
 	 * Get meta info from the PDF
-	 * @param inputStream
+	 *
+	 * @param inputStream InputStream to the PDF
 	 * @return Map that includes meta info of the PDF
 	 */
 	public static Map<String, String> getInfo(InputStream inputStream) throws IOException {
@@ -380,6 +399,7 @@ public class PdfService {
 
 	/**
 	 * Get meta info from the PDF
+	 *
 	 * @param inputStream InputStream to the PDF
 	 * @param pwd Password to decrypt the PDF
 	 * @return Map that includes meta info of the PDF
@@ -405,6 +425,7 @@ public class PdfService {
 
 	/**
 	 * Set meta info to the PDF
+	 *
 	 * @param inputStream InputStream to the PDF
 	 * @param infoMap HashMap to store info of the meta info
 	 *                defined keys include: Author, Creator, Keywords, Producer, Subject, Title, Trapped
@@ -417,6 +438,7 @@ public class PdfService {
 
 	/**
 	 * Set meta info to the PDF
+	 *
 	 * @param inputStream InputStream to the PDF
 	 * @param pwd Password to decrypt the PDF
 	 * @param infoMap HashMap to store info of the meta info
