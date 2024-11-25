@@ -38,6 +38,7 @@ public class PdfService {
 	 * Create a new blank PDF. The new PDF will at least contain a single page.
 	 * @param pageNum Page number that new PDF will contain
 	 * @param outputStream OutputStream to the output PDF
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static void create(int pageNum, OutputStream outputStream) throws IOException {
 		log.info("Create PDF");
@@ -58,6 +59,7 @@ public class PdfService {
 	 * Read the text from given PDF.
 	 * @param inputStream InputStream to the PDF
 	 * @return Text of the PDF
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static String read(InputStream inputStream) throws IOException {
 		return read(inputStream, null);
@@ -68,6 +70,7 @@ public class PdfService {
 	 * @param inputStream InputStream to the PDF
 	 * @param pwd Password to decrypt the PDF
 	 * @return Text of the PDF
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static String read(InputStream inputStream, String pwd) throws IOException {
 		log.info("Reading PDF");
@@ -86,6 +89,7 @@ public class PdfService {
 	 * @param inputStream InputStream to the PDF
 	 * @param pagesIdx Index of pages subjected to split
 	 * @param outputStream OutputStream to the output PDF
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static void split(InputStream inputStream, int[] pagesIdx, OutputStream outputStream) throws IOException {
 		split(inputStream, null, pagesIdx, outputStream);
@@ -97,6 +101,7 @@ public class PdfService {
 	 * @param pwd Password to decrypt the PDF
 	 * @param pagesIdx Index of pages subjected to split
 	 * @param outputStream OutputStream to the output PDF
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static void split(InputStream inputStream, String pwd, int[] pagesIdx, OutputStream outputStream) throws IOException {
 		log.info("Splitting PDF");
@@ -117,6 +122,7 @@ public class PdfService {
 	 * Merge multiple PDF into a new PDF
 	 * @param inputStream Map of InputStream to the PDF and corresponding password (if any)
 	 * @param outputStream OutputStream to the output PDF
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static void merge(Stream<Map.Entry<InputStream, String>> inputStream, OutputStream outputStream) throws IOException {
 		log.info("Merging PDF");
@@ -142,6 +148,7 @@ public class PdfService {
 	 * @param ownerPwd New password to decrypt the PDF in owner level
 	 * @param userPwd New password to decrypt the PDF in user level
 	 * @param outputStream OutputStream to the output PDF
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static void encrypt(InputStream inputStream, String ownerPwd, String userPwd, OutputStream outputStream) throws IOException {
 		encrypt(inputStream, null, ownerPwd, userPwd, outputStream);
@@ -154,6 +161,7 @@ public class PdfService {
 	 * @param ownerPwd New password to decrypt the PDF in owner level
 	 * @param userPwd New password to decrypt the PDF in user level
 	 * @param outputStream OutputStream to the output PDF
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static void encrypt(InputStream inputStream, String pwd, String ownerPwd, String userPwd, OutputStream outputStream) throws IOException {
 		log.info("Encrypting PDF");
@@ -187,6 +195,7 @@ public class PdfService {
 	 * @param x X coordinate (inch) of the drawing position, starting from upper-left corner
 	 * @param y Y coordinate (inch) of the drawing position, starting from upper-left corner
 	 * @param outputStream OutputStream to the output PDF
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static void draw(InputStream inputStream, int pageIdx, InputStream imgStream, float x, float y, OutputStream outputStream) throws IOException {
 		draw(inputStream, null, pageIdx, imgStream, x, y, -1, -1, outputStream);
@@ -202,6 +211,7 @@ public class PdfService {
 	 * @param width Width (inch) of the image
 	 * @param height Height (inch) of the image
 	 * @param outputStream OutputStream to the output PDF
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static void draw(InputStream inputStream, int pageIdx, InputStream imgStream, float x, float y, float width, float height, OutputStream outputStream) throws IOException {
 		draw(inputStream, null, pageIdx, imgStream, x, y, width, height, outputStream);
@@ -216,6 +226,7 @@ public class PdfService {
 	 * @param x X coordinate (inch) of the drawing position, starting from upper-left corner
 	 * @param y Y coordinate (inch) of the drawing position, starting from upper-left corner
 	 * @param outputStream OutputStream to the output PDF
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static void draw(InputStream inputStream, String pwd, int pageIdx, InputStream imgStream, float x, float y, OutputStream outputStream) throws IOException {
 		draw(inputStream, pwd, pageIdx, imgStream, x, y, -1, -1, outputStream);
@@ -232,6 +243,7 @@ public class PdfService {
 	 * @param width Width (inch) of the image
 	 * @param height Height (inch) of the image
 	 * @param outputStream OutputStream to the output PDF
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static void draw(InputStream inputStream, String pwd, int pageIdx, InputStream imgStream, float x, float y, float width, float height, OutputStream outputStream) throws IOException {
 		log.info("Drawing img to PDF");
@@ -272,6 +284,7 @@ public class PdfService {
 	 * @param pageIdx Index of page to capture
 	 * @param dpi The DPI of the output image
 	 * @param outputStream OutputStream to the output image(png)
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static void capture(InputStream inputStream, int pageIdx, float dpi, OutputStream outputStream) throws IOException {
 		capture(inputStream, null, pageIdx, -1, -1, -1, -1, dpi, outputStream);
@@ -284,6 +297,7 @@ public class PdfService {
 	 * @param pageIdx Index of page to capture
 	 * @param dpi The DPI of the output image
 	 * @param outputStream OutputStream to the output image(png)
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static void capture(InputStream inputStream, String pwd, int pageIdx, float dpi, OutputStream outputStream) throws IOException {
 		capture(inputStream, pwd, pageIdx, -1, -1, -1, -1, dpi, outputStream);
@@ -299,6 +313,7 @@ public class PdfService {
 	 * @param height Height (inch) of the capture area
 	 * @param dpi The DPI of the output image
 	 * @param outputStream OutputStream to the output image(png)
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static void capture(InputStream inputStream, int pageIdx, float x, float y, float width, float height, float dpi, OutputStream outputStream) throws IOException {
 		capture(inputStream, null, pageIdx, x, y, width, height, dpi, outputStream);
@@ -315,6 +330,7 @@ public class PdfService {
 	 * @param height Height (inch) of the capture area
 	 * @param dpi The DPI of the output image
 	 * @param outputStream OutputStream to the output image(png)
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static void capture(InputStream inputStream, String pwd, int pageIdx, float x, float y, float width, float height, float dpi, OutputStream outputStream) throws IOException {
 		log.info("Cutting img from PDF");
@@ -340,6 +356,7 @@ public class PdfService {
 	 * @param inputStream InputStream to the PDF
 	 * @param watermarkStream InputStream to the watermark PDF
 	 * @param outputStream OutputStream to the output PDF
+	 * @throws IOException if the PDF is not valid
 	 */
 	 public static void watermark(InputStream inputStream, InputStream watermarkStream, OutputStream outputStream) throws IOException {
 		watermark(inputStream, null, watermarkStream, null, outputStream);
@@ -352,6 +369,7 @@ public class PdfService {
 	 * @param watermarkStream InputStream to the watermark PDF
 	 * @param watermarkPwd Password to decrypt the watermark PDF
 	 * @param outputStream OutputStream to the output PDF
+	 * @throws IOException if the PDF is not valid
 	 */
 	 public static void watermark(InputStream inputStream, String pwd, InputStream watermarkStream, String watermarkPwd, OutputStream outputStream) throws IOException {
 		log.info("Adding watermark to PDF");
@@ -371,8 +389,9 @@ public class PdfService {
 
 	/**
 	 * Get meta info from the PDF
-	 * @param inputStream
+	 * @param inputStream InputStream to the PDF
 	 * @return Map that includes meta info of the PDF
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static Map<String, String> getInfo(InputStream inputStream) throws IOException {
 	 	return getInfo(inputStream, null);
@@ -383,6 +402,7 @@ public class PdfService {
 	 * @param inputStream InputStream to the PDF
 	 * @param pwd Password to decrypt the PDF
 	 * @return Map that includes meta info of the PDF
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static Map<String, String> getInfo(InputStream inputStream, String pwd) throws IOException {
 	 	log.info("Getting Info from PDF");
@@ -410,6 +430,7 @@ public class PdfService {
 	 *                defined keys include: Author, Creator, Keywords, Producer, Subject, Title, Trapped
 	 *                other keys will be added into custom properties
 	 * @param outputStream OutputStream to the output PDF
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static void setInfo(InputStream inputStream, HashMap<String, String> infoMap, OutputStream outputStream) throws IOException {
 		setInfo(inputStream, null, infoMap, outputStream);
@@ -423,6 +444,7 @@ public class PdfService {
 	 *                defined keys include: Author, Creator, Keywords, Producer, Subject, Title, Trapped
 	 *                other keys will be added into custom properties
 	 * @param outputStream OutputStream to the output PDF
+	 * @throws IOException if the PDF is not valid
 	 */
 	public static void setInfo(InputStream inputStream, String pwd, HashMap<String, String> infoMap, OutputStream outputStream) throws IOException {
 		log.info("Setting Info to PDF");
@@ -465,6 +487,62 @@ public class PdfService {
 			doc.save(outputStream);
 		} catch (IOException e) {
 			log.error("Setting Info to PDF Exception: ", e);
+			throw(e);
+		}
+	}
+
+	/**
+	 * Get the version of the PDF
+	 * @param inputStream InputStream to the PDF
+	 * @return float version of the PDF
+	 * @throws IOException if the PDF is not valid
+	 */
+	public static float getVersion(InputStream inputStream) throws IOException {
+		return getVersion(inputStream, null);
+	}
+
+	/**
+	 * Get the version of the PDF
+	 * @param inputStream InputStream to the PDF
+	 * @param pwd Password to decrypt the PDF
+	 * @return float version of the PDF
+	 * @throws IOException if the PDF is not valid
+	 */
+	public static float getVersion(InputStream inputStream, String pwd) throws IOException {
+		log.info("Getting PDF Version");
+		try (PDDocument doc = PDDocument.load(inputStream, pwd)) {
+			return doc.getVersion();
+		} catch (IOException e) {
+			log.error("Getting PDF Version Exception: ", e);
+			throw(e);
+		}
+	}
+
+	/**
+	 * Set the version of the PDF
+	 * @param inputStream InputStream to the PDF
+	 * @param version float version of the PDF
+	 * @param outputStream OutputStream to the output PDF
+	 * @throws IOException if the PDF is not valid
+	 */
+	public static void setVersion(InputStream inputStream, float version, OutputStream outputStream) throws IOException {
+		setVersion(inputStream, null, version, outputStream);
+	}
+
+	/**
+	 * Set the version of the PDF
+	 * @param inputStream InputStream to the PDF
+	 * @param pwd Password to decrypt the PDF
+	 * @param version float version of the PDF
+	 * @throws IOException if the PDF is not valid
+	 */
+	public static void setVersion(InputStream inputStream, String pwd, float version, OutputStream outputStream) throws IOException {
+		log.info("Setting PDF Version");
+		try (PDDocument doc = PDDocument.load(inputStream, pwd)) {
+			doc.setVersion(version);
+			doc.save(outputStream);
+		} catch (IOException e) {
+			log.error("Setting PDF Version Exception: ", e);
 			throw(e);
 		}
 	}
